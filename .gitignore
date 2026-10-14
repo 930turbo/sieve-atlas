@@ -1,0 +1,10 @@
+# Sieve Atlas workspace
+.build/
+__pycache__/
+*.py[cod]
+*.hi
+*.o
+*.cmi
+*.cmo
+*.mod
+benchmark-results.json

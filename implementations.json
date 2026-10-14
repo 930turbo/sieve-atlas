@@ -1,0 +1,588 @@
+[
+  {
+    "id": "python",
+    "language": "Python",
+    "path": "implementations/python/sieve.py",
+    "run": [
+      "python",
+      "{source}"
+    ],
+    "build": null,
+    "requires": "Python 3.10+",
+    "storage": "Byte array",
+    "variant": "classic"
+  },
+  {
+    "id": "javascript",
+    "language": "JavaScript",
+    "path": "implementations/javascript/sieve.mjs",
+    "run": [
+      "node",
+      "{source}"
+    ],
+    "build": null,
+    "requires": "Node.js 18+",
+    "storage": "Typed byte array",
+    "variant": "classic"
+  },
+  {
+    "id": "typescript",
+    "language": "TypeScript",
+    "path": "implementations/typescript/sieve.ts",
+    "run": [
+      "node",
+      "{build}/sieve.js"
+    ],
+    "build": [
+      "tsc",
+      "--target",
+      "ES2020",
+      "--module",
+      "commonjs",
+      "--outDir",
+      "{build}",
+      "{source}"
+    ],
+    "requires": "TypeScript 5+ + Node.js 18+",
+    "storage": "Typed byte array",
+    "variant": "classic"
+  },
+  {
+    "id": "haskell",
+    "language": "Haskell",
+    "path": "implementations/haskell/sieve.hs",
+    "run": [
+      "{build}/sieve"
+    ],
+    "build": [
+      "ghc",
+      "-O2",
+      "-outputdir",
+      "{build}",
+      "-o",
+      "{build}/sieve",
+      "{source}"
+    ],
+    "requires": "GHC 9+ (array bundled)",
+    "storage": "ST unboxed array",
+    "variant": "classic"
+  },
+  {
+    "id": "c",
+    "language": "C",
+    "path": "implementations/c/sieve.c",
+    "run": [
+      "{build}/sieve"
+    ],
+    "build": [
+      "gcc",
+      "-std=c11",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "{source}",
+      "-o",
+      "{build}/sieve"
+    ],
+    "requires": "GCC / C11",
+    "storage": "Byte array",
+    "variant": "classic"
+  },
+  {
+    "id": "cpp",
+    "language": "C++",
+    "path": "implementations/cpp/sieve.cpp",
+    "run": [
+      "{build}/sieve"
+    ],
+    "build": [
+      "g++",
+      "-std=c++17",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "{source}",
+      "-o",
+      "{build}/sieve"
+    ],
+    "requires": "G++ / C++17",
+    "storage": "Byte vector",
+    "variant": "classic"
+  },
+  {
+    "id": "csharp",
+    "language": "C#",
+    "path": "implementations/csharp/Sieve.cs",
+    "run": [
+      "mono",
+      "{build}/sieve.exe"
+    ],
+    "build": [
+      "mcs",
+      "-out:{build}/sieve.exe",
+      "{source}"
+    ],
+    "requires": "Mono C# compiler + runtime",
+    "storage": "Boolean array",
+    "variant": "classic"
+  },
+  {
+    "id": "java",
+    "language": "Java",
+    "path": "implementations/java/Sieve.java",
+    "run": [
+      "java",
+      "-cp",
+      "{build}",
+      "Sieve"
+    ],
+    "build": [
+      "javac",
+      "-d",
+      "{build}",
+      "{source}"
+    ],
+    "requires": "JDK 17+",
+    "storage": "Boolean array",
+    "variant": "classic"
+  },
+  {
+    "id": "go",
+    "language": "Go",
+    "path": "implementations/go/sieve.go",
+    "run": [
+      "{build}/sieve"
+    ],
+    "build": [
+      "go",
+      "build",
+      "-o",
+      "{build}/sieve",
+      "{source}"
+    ],
+    "requires": "Go 1.20+",
+    "storage": "Boolean slice",
+    "variant": "classic"
+  },
+  {
+    "id": "rust",
+    "language": "Rust",
+    "path": "implementations/rust/sieve.rs",
+    "run": [
+      "{build}/sieve"
+    ],
+    "build": [
+      "rustc",
+      "-O",
+      "--edition",
+      "2021",
+      "{source}",
+      "-o",
+      "{build}/sieve"
+    ],
+    "requires": "Rust 2021 edition",
+    "storage": "Boolean vector",
+    "variant": "classic"
+  },
+  {
+    "id": "ruby",
+    "language": "Ruby",
+    "path": "implementations/ruby/sieve.rb",
+    "run": [
+      "ruby",
+      "{source}"
+    ],
+    "build": null,
+    "requires": "Ruby 3+",
+    "storage": "Array",
+    "variant": "classic"
+  },
+  {
+    "id": "php",
+    "language": "PHP",
+    "path": "implementations/php/sieve.php",
+    "run": [
+      "php",
+      "{source}"
+    ],
+    "build": null,
+    "requires": "PHP 8+",
+    "storage": "Array",
+    "variant": "classic"
+  },
+  {
+    "id": "perl",
+    "language": "Perl",
+    "path": "implementations/perl/sieve.pl",
+    "run": [
+      "perl",
+      "{source}"
+    ],
+    "build": null,
+    "requires": "Perl 5",
+    "storage": "Array",
+    "variant": "classic"
+  },
+  {
+    "id": "lua",
+    "language": "Lua",
+    "path": "implementations/lua/sieve.lua",
+    "run": [
+      "lua",
+      "{source}"
+    ],
+    "build": null,
+    "requires": "Lua 5.3+",
+    "storage": "Sparse table",
+    "variant": "classic"
+  },
+  {
+    "id": "r",
+    "language": "R",
+    "path": "implementations/r/sieve.R",
+    "run": [
+      "Rscript",
+      "{source}"
+    ],
+    "build": null,
+    "requires": "R 4+",
+    "storage": "Logical vector",
+    "variant": "classic"
+  },
+  {
+    "id": "julia",
+    "language": "Julia",
+    "path": "implementations/julia/sieve.jl",
+    "run": [
+      "julia",
+      "--startup-file=no",
+      "{source}"
+    ],
+    "build": null,
+    "requires": "Julia 1.10+",
+    "storage": "Packed BitVector",
+    "variant": "classic"
+  },
+  {
+    "id": "swift",
+    "language": "Swift",
+    "path": "implementations/swift/sieve.swift",
+    "run": [
+      "{build}/sieve"
+    ],
+    "build": [
+      "swiftc",
+      "-O",
+      "{source}",
+      "-o",
+      "{build}/sieve"
+    ],
+    "requires": "Swift 5+",
+    "storage": "Boolean array",
+    "variant": "classic"
+  },
+  {
+    "id": "kotlin",
+    "language": "Kotlin",
+    "path": "implementations/kotlin/Sieve.kt",
+    "run": [
+      "java",
+      "-jar",
+      "{build}/sieve.jar"
+    ],
+    "build": [
+      "kotlinc",
+      "{source}",
+      "-include-runtime",
+      "-d",
+      "{build}/sieve.jar"
+    ],
+    "requires": "Kotlin + JDK 17",
+    "storage": "BooleanArray",
+    "variant": "classic"
+  },
+  {
+    "id": "scala",
+    "language": "Scala",
+    "path": "implementations/scala/Sieve.scala",
+    "run": [
+      "scala",
+      "-cp",
+      "{build}",
+      "Sieve"
+    ],
+    "build": [
+      "scalac",
+      "-d",
+      "{build}",
+      "{source}"
+    ],
+    "requires": "Scala 2.11+ + JDK",
+    "storage": "Boolean array",
+    "variant": "classic"
+  },
+  {
+    "id": "elixir",
+    "language": "Elixir",
+    "path": "implementations/elixir/sieve.exs",
+    "run": [
+      "elixir",
+      "{source}"
+    ],
+    "build": null,
+    "requires": "Elixir 1.12+ / OTP",
+    "storage": "Immutable MapSet",
+    "variant": "classic"
+  },
+  {
+    "id": "erlang",
+    "language": "Erlang",
+    "path": "implementations/erlang/sieve.erl",
+    "run": [
+      "escript",
+      "{source}"
+    ],
+    "build": null,
+    "requires": "Erlang/OTP 24+",
+    "storage": "Immutable set",
+    "variant": "classic"
+  },
+  {
+    "id": "ocaml",
+    "language": "OCaml",
+    "path": "implementations/ocaml/sieve.ml",
+    "run": [
+      "{build}/sieve"
+    ],
+    "build": [
+      "ocamlc",
+      "-o",
+      "{build}/sieve",
+      "{source}"
+    ],
+    "requires": "OCaml 4.08+",
+    "storage": "Boolean array",
+    "variant": "classic"
+  },
+  {
+    "id": "fsharp",
+    "language": "F#",
+    "path": "implementations/fsharp/sieve.fsx",
+    "run": [
+      "dotnet",
+      "fsi",
+      "--exec",
+      "{source}"
+    ],
+    "build": null,
+    "requires": ".NET SDK 8+",
+    "storage": "Boolean array",
+    "variant": "classic"
+  },
+  {
+    "id": "dart",
+    "language": "Dart",
+    "path": "implementations/dart/sieve.dart",
+    "run": [
+      "dart",
+      "run",
+      "{source}"
+    ],
+    "build": null,
+    "requires": "Dart 3+",
+    "storage": "Typed byte array",
+    "variant": "classic"
+  },
+  {
+    "id": "nim",
+    "language": "Nim",
+    "path": "implementations/nim/sieve.nim",
+    "run": [
+      "{build}/sieve"
+    ],
+    "build": [
+      "nim",
+      "c",
+      "-d:release",
+      "--hints:off",
+      "--nimcache:{build}/cache",
+      "--out:{build}/sieve",
+      "{source}"
+    ],
+    "requires": "Nim 1.6+",
+    "storage": "Boolean sequence",
+    "variant": "classic"
+  },
+  {
+    "id": "crystal",
+    "language": "Crystal",
+    "path": "implementations/crystal/sieve.cr",
+    "run": [
+      "{build}/sieve"
+    ],
+    "build": [
+      "crystal",
+      "build",
+      "--release",
+      "{source}",
+      "-o",
+      "{build}/sieve"
+    ],
+    "requires": "Crystal 1+",
+    "storage": "Boolean array",
+    "variant": "classic"
+  },
+  {
+    "id": "fortran",
+    "language": "Fortran",
+    "path": "implementations/fortran/sieve.f90",
+    "run": [
+      "{build}/sieve"
+    ],
+    "build": [
+      "gfortran",
+      "-std=f2008",
+      "-O2",
+      "-J{build}",
+      "{source}",
+      "-o",
+      "{build}/sieve"
+    ],
+    "requires": "GFortran / Fortran 2008",
+    "storage": "Logical array",
+    "variant": "classic"
+  },
+  {
+    "id": "pascal",
+    "language": "Pascal",
+    "path": "implementations/pascal/sieve.pas",
+    "run": [
+      "{build}/sieve"
+    ],
+    "build": [
+      "fpc",
+      "-O2",
+      "-FU{build}",
+      "-o{build}/sieve",
+      "{source}"
+    ],
+    "requires": "Free Pascal 3+",
+    "storage": "Dynamic array",
+    "variant": "classic"
+  },
+  {
+    "id": "bash",
+    "language": "Bash",
+    "path": "implementations/bash/sieve.sh",
+    "run": [
+      "bash",
+      "{source}"
+    ],
+    "build": null,
+    "requires": "Bash 4+",
+    "storage": "Indexed array",
+    "variant": "classic"
+  },
+  {
+    "id": "powershell",
+    "language": "PowerShell",
+    "path": "implementations/powershell/sieve.ps1",
+    "run": [
+      "pwsh",
+      "-NoProfile",
+      "-File",
+      "{source}"
+    ],
+    "build": null,
+    "requires": "PowerShell 7+",
+    "storage": "Boolean array",
+    "variant": "classic",
+    "limit_flag": "-Limit"
+  },
+  {
+    "id": "python-odd",
+    "language": "Python",
+    "path": "variants/odd_only.py",
+    "run": [
+      "python",
+      "{source}"
+    ],
+    "build": null,
+    "requires": "Same as baseline",
+    "storage": "Odd-only byte array",
+    "variant": "odd-only"
+  },
+  {
+    "id": "python-segmented",
+    "language": "Python",
+    "path": "variants/segmented.py",
+    "run": [
+      "python",
+      "{source}"
+    ],
+    "build": null,
+    "requires": "Same as baseline",
+    "storage": "Segmented byte array",
+    "variant": "segmented"
+  },
+  {
+    "id": "python-incremental",
+    "language": "Python",
+    "path": "variants/incremental.py",
+    "run": [
+      "python",
+      "{source}"
+    ],
+    "build": null,
+    "requires": "Same as baseline",
+    "storage": "Composite schedule",
+    "variant": "incremental"
+  },
+  {
+    "id": "python-linear",
+    "language": "Python",
+    "path": "variants/linear.py",
+    "run": [
+      "python",
+      "{source}"
+    ],
+    "build": null,
+    "requires": "Same as baseline",
+    "storage": "Smallest-prime-factor array",
+    "variant": "linear (Euler)"
+  },
+  {
+    "id": "javascript-bits",
+    "language": "JavaScript",
+    "path": "variants/bit_packed.mjs",
+    "run": [
+      "node",
+      "{source}"
+    ],
+    "build": null,
+    "requires": "Same as baseline",
+    "storage": "Packed bit array",
+    "variant": "bit-packed"
+  },
+  {
+    "id": "cpp-segmented",
+    "language": "C++",
+    "path": "variants/segmented.cpp",
+    "run": [
+      "{build}/sieve"
+    ],
+    "build": [
+      "g++",
+      "-std=c++17",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "{source}",
+      "-o",
+      "{build}/sieve"
+    ],
+    "requires": "Same as baseline",
+    "storage": "Segmented byte vector",
+    "variant": "segmented"
+  }
+]

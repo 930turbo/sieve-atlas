@@ -1,0 +1,97 @@
+name: Verify the atlas
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: sieve-atlas-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  core:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s tests -v
+      - run: python tools/generate_docs.py --check
+      - run: python tools/render_assets.py --check
+  languages:
+    name: Languages (${{ matrix.group }})
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - group: systems
+            packages: gcc g++ golang-go rustc gfortran fp-compiler nim
+            ids: c cpp cpp-segmented go rust fortran pascal nim
+          - group: scripts
+            packages: ruby php-cli perl lua5.4 r-base-core
+            ids: python javascript typescript ruby php perl lua r bash powershell python-odd python-segmented python-incremental python-linear javascript-bits
+          - group: functional
+            packages: ghc elixir erlang-base erlang-dev erlang-tools ocaml
+            ids: haskell elixir erlang ocaml fsharp
+          - group: jvm-and-crystal
+            packages: kotlin scala mono-mcs crystal
+            ids: java kotlin scala csharp crystal
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        if: matrix.group == 'scripts'
+        with:
+          node-version: '22'
+      - uses: actions/setup-java@v4
+        if: matrix.group == 'jvm-and-crystal'
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: actions/setup-dotnet@v4
+        if: matrix.group == 'functional'
+        with:
+          dotnet-version: '8.0.x'
+      - name: Install compilers and interpreters
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends ${{ matrix.packages }}
+      - run: npm install --global typescript@5.8.3
+        if: matrix.group == 'scripts'
+      - run: python tools/atlas.py test ${{ matrix.ids }} --require
+  julia:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: julia-actions/setup-julia@v2
+        with:
+          version: '1.10'
+      - run: python tools/atlas.py test julia --require
+  dart:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+      - run: python tools/atlas.py test dart --require
+  swift:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python tools/atlas.py test swift --require
